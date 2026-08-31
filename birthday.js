@@ -955,7 +955,7 @@ if (cornerLoveEl) {
         }
         if(targetText[index] === " ") return " ";
         return letters[Math.floor(Math.random() * letters.length)];
-      }).join("") + " 💛";
+      }).join("") + " 💜";
 
       if(iteration >= targetText.length / 2){
         clearInterval(hackerInterval);

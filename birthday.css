@@ -56,7 +56,7 @@ body{
   font-weight:700;
   font-size:clamp(12px, 2.6vw, 17px);
   letter-spacing:.04em;
-  color:#fbeaff;
+  color:#000000;
   padding:8px 16px;
   cursor:crosshair;
   transform-origin:right top;
@@ -67,8 +67,8 @@ body{
 
 .cornerLove:hover {
   transform: translateY(-2px) scale(1.02);
-  color: #ffffff;
-  text-shadow: 0 0 10px #e5b3ff, 0 0 20px #7f00b2;
+  color: #000000;
+  text-shadow: 0 0 10px rgba(127, 0, 178, 0.9), 0 0 20px #7f00b2;
 }
 
 @keyframes dropInLove {
