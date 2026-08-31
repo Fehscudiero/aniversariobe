@@ -970,3 +970,77 @@ if (cornerLoveEl) {
   // E também quando passa o mouse
   cornerLoveEl.addEventListener("mouseover", runHackerEffect);
 }
+
+/* ============================================================
+   EASTER EGG (EU TE AMO) ANIMATION
+   ============================================================ */
+const eeLetters = gsap.utils.toArray('.ee-letter');
+const treeCanvasEl = document.getElementById('tree');
+let eeRevealed = false;
+
+if (eeLetters.length && treeCanvasEl) {
+  // Dispersa as letras escondidas como pequenos "pólenes" ou pétalas pela copa da árvore
+  eeLetters.forEach(letter => {
+    const rx = gsap.utils.random(-25, 25); // vw
+    const ry = gsap.utils.random(-35, -5); // vh (para cima, onde fica a copa)
+    const rz = gsap.utils.random(-120, 120);
+    const scale = gsap.utils.random(0.15, 0.35);
+    
+    // Estado inicial: parecem pétalas roxas espalhadas
+    gsap.set(letter, { 
+      x: rx + "vw", 
+      y: ry + "vh", 
+      rotationZ: rz,
+      rotationY: gsap.utils.random(-180, 180),
+      scale: scale, 
+      opacity: 0.5,
+      color: "#7f00b2",
+      textShadow: "0 0 4px rgba(127,0,178,0.5)"
+    });
+    
+    // Flutuação leve enquanto estão escondidas
+    gsap.to(letter, {
+      y: (ry - 2) + "vh",
+      rotationZ: rz + gsap.utils.random(-15, 15),
+      duration: gsap.utils.random(3, 5),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  });
+
+  // Revela o Easter Egg ao clicar na árvore
+  treeCanvasEl.addEventListener('click', () => {
+    if(eeRevealed) return;
+    eeRevealed = true;
+    
+    // Para a flutuação
+    gsap.killTweensOf(eeLetters);
+    
+    // Animação foda: explodem e se juntam no centro formando o EU TE AMO
+    gsap.to(eeLetters, {
+      x: "0vw",
+      y: "0vh",
+      rotationZ: 0,
+      rotationY: 0,
+      scale: 1,
+      opacity: 1,
+      color: "#ffffff",
+      textShadow: "0 0 15px #e5b3ff, 0 0 30px #7f00b2, 0 0 60px #7f00b2",
+      duration: 2.2,
+      stagger: 0.12,
+      ease: "elastic.out(1, 0.4)",
+      onComplete: () => {
+        // Flutuação conjunta suave após formarem a palavra
+        gsap.to(eeLetters, {
+          y: "-1.5vh",
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          stagger: 0.1,
+          ease: "sine.inOut"
+        });
+      }
+    });
+  });
+}

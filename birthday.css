@@ -646,3 +646,35 @@ body{
   .wish.is-in .wish__heroWrap::before{ animation:none; opacity:.9; }
   .wish.is-in .wish__heroWrap::after{ animation:none; opacity:0; }
 }
+
+/* ============================================================
+   EASTER EGG (EU TE AMO)
+   ============================================================ */
+.ee-container {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(14px, 3vw, 30px);
+  flex-wrap: wrap;
+  perspective: 800px;
+}
+.ee-word {
+  display: flex;
+  gap: clamp(2px, 0.5vw, 8px);
+}
+.ee-letter {
+  display: inline-block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(40px, 10vw, 80px);
+  color: #ffffff;
+  text-shadow: 0 0 10px #e5b3ff, 0 0 30px #7f00b2, 0 0 60px #7f00b2;
+  will-change: transform, opacity, color;
+  opacity: 0; 
+}
+#tree { cursor: pointer; } /* Hint for Easter Egg */
