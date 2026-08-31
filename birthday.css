@@ -56,21 +56,22 @@ body{
   font-weight:700;
   font-size:clamp(12px, 2.6vw, 17px);
   letter-spacing:.04em;
-  color:#000000;
+  color:#fbeaff;
   padding:8px 16px;
   border-radius:999px;
-  background:rgba(255, 255, 255, 0.45);
-  border:1px solid rgba(255, 255, 255, 0.6);
+  background:rgba(20, 0, 30, 0.65);
+  border:1px solid #7f00b2;
   box-shadow: 
-    0 4px 18px rgba(0, 0, 0, 0.08),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    0 0 12px rgba(127, 0, 178, 0.8),
+    inset 0 0 10px rgba(127, 0, 178, 0.5);
   backdrop-filter:blur(12px); 
   -webkit-backdrop-filter:blur(12px);
   overflow:hidden;
-  cursor:default;
+  cursor:crosshair;
   transform-origin:right top;
   animation:dropInLove 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
 }
 
 .cornerLove::before {
@@ -78,22 +79,25 @@ body{
   position: absolute;
   top: 0; left: -150%;
   width: 50%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+  background: linear-gradient(90deg, transparent, rgba(127, 0, 178, 0.8), transparent);
   transform: skewX(-25deg);
   animation: shimmerLove 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   pointer-events: none;
 }
 
 .cornerLove:hover {
-  background:rgba(255, 255, 255, 0.65);
+  background:rgba(30, 0, 50, 0.85);
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.12),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    0 0 24px rgba(127, 0, 178, 1),
+    0 0 40px rgba(127, 0, 178, 0.6),
+    inset 0 0 15px rgba(127, 0, 178, 0.8);
   transform: translateY(-2px) scale(1.02);
+  color: #ffffff;
+  text-shadow: 0 0 10px #e5b3ff, 0 0 20px #7f00b2;
 }
 
 @keyframes dropInLove {
-  0% { opacity: 0; transform: translateY(-20px) scale(0.95); filter: blur(4px); }
+  0% { opacity: 0; transform: translateY(-20px) scale(0.95); filter: blur(4px); box-shadow: 0 0 0 transparent; }
   100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 

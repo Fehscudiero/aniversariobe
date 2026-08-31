@@ -931,3 +931,33 @@ if (isRecord){
     replay(){ resetAll(); },
   };
 }
+
+/* ============================================================
+   CORNER LOVE HACKER EFFECT
+   ============================================================ */
+const cornerLoveEl = document.getElementById('cornerLove');
+if (cornerLoveEl) {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+  let hackerInterval = null;
+
+  cornerLoveEl.addEventListener("mouseover", () => {
+    let iteration = 0;
+    const targetText = cornerLoveEl.getAttribute("data-value") || "Feito com muito amor por Scudiero";
+    clearInterval(hackerInterval);
+
+    hackerInterval = setInterval(() => {
+      cornerLoveEl.innerText = targetText.split("").map((letter, index) => {
+        if(index < iteration) {
+          return targetText[index];
+        }
+        if(targetText[index] === " ") return " ";
+        return letters[Math.floor(Math.random() * letters.length)];
+      }).join("") + " 💛";
+
+      if(iteration >= targetText.length){
+        clearInterval(hackerInterval);
+      }
+      iteration += 1 / 2;
+    }, 30);
+  });
+}
