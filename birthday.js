@@ -971,75 +971,83 @@ if (cornerLoveEl) {
   cornerLoveEl.addEventListener("mouseover", runHackerEffect);
 }
 
+
 /* ============================================================
-   EASTER EGG (EU TE AMO) ANIMATION
+   EASTER EGG (EU TE AMO) ANIMATION - BUSCA LETRA POR LETRA
    ============================================================ */
 const eeLetters = gsap.utils.toArray('.ee-letter');
-const treeCanvasEl = document.getElementById('tree');
-let eeRevealed = false;
+let lettersFound = 0;
 
-if (eeLetters.length && treeCanvasEl) {
-  // Dispersa as letras escondidas como pequenos "pólenes" ou pétalas pela copa da árvore
+if (eeLetters.length) {
   eeLetters.forEach(letter => {
-    const rx = gsap.utils.random(-25, 25); // vw
-    const ry = gsap.utils.random(-35, -5); // vh (para cima, onde fica a copa)
+    // Espalha pela tela (dentro da área da copa da árvore)
+    const rx = gsap.utils.random(-35, 35); // vw (mais espalhado)
+    const ry = gsap.utils.random(-15, 35); // vh (distribuído pela árvore)
     const rz = gsap.utils.random(-120, 120);
-    const scale = gsap.utils.random(0.15, 0.35);
+    const scale = gsap.utils.random(0.18, 0.25);
     
-    // Estado inicial: parecem pétalas roxas espalhadas
+    // Estado inicial: pedacinho disfarçado
     gsap.set(letter, { 
       x: rx + "vw", 
       y: ry + "vh", 
       rotationZ: rz,
       rotationY: gsap.utils.random(-180, 180),
       scale: scale, 
-      opacity: 0.5,
+      opacity: 0.85,
       color: "#7f00b2",
-      textShadow: "0 0 4px rgba(127,0,178,0.5)"
+      textShadow: "0 0 5px rgba(127,0,178,0.6)"
     });
     
-    // Flutuação leve enquanto estão escondidas
-    gsap.to(letter, {
+    // Flutuação independente
+    const floatAnim = gsap.to(letter, {
       y: (ry - 2) + "vh",
-      rotationZ: rz + gsap.utils.random(-15, 15),
+      rotationZ: rz + gsap.utils.random(-20, 20),
       duration: gsap.utils.random(3, 5),
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
     });
-  });
 
-  // Revela o Easter Egg ao clicar na árvore
-  treeCanvasEl.addEventListener('click', () => {
-    if(eeRevealed) return;
-    eeRevealed = true;
-    
-    // Para a flutuação
-    gsap.killTweensOf(eeLetters);
-    
-    // Animação foda: explodem e se juntam no centro formando o EU TE AMO
-    gsap.to(eeLetters, {
-      x: "0vw",
-      y: "0vh",
-      rotationZ: 0,
-      rotationY: 0,
-      scale: 1,
-      opacity: 1,
-      color: "#ffffff",
-      textShadow: "0 0 15px #e5b3ff, 0 0 30px #7f00b2, 0 0 60px #7f00b2",
-      duration: 2.2,
-      stagger: 0.12,
-      ease: "elastic.out(1, 0.4)",
-      onComplete: () => {
-        // Flutuação conjunta suave após formarem a palavra
-        gsap.to(eeLetters, {
-          y: "-1.5vh",
-          duration: 3,
-          repeat: -1,
-          yoyo: true,
-          stagger: 0.1,
-          ease: "sine.inOut"
-        });
+    // Ao encontrar e clicar na letra
+    letter.addEventListener('click', function() {
+      if (this.dataset.found === "true") return;
+      this.dataset.found = "true";
+      
+      lettersFound++;
+      floatAnim.kill(); // Para a flutuação
+      
+      // A letra voa para o lugar dela
+      gsap.to(this, {
+        x: "0vw",
+        y: "0vh",
+        rotationZ: 0,
+        rotationY: 0,
+        scale: 1,
+        opacity: 1,
+        color: "#ffffff",
+        textShadow: "0 0 15px #e5b3ff, 0 0 30px #7f00b2, 0 0 60px #7f00b2",
+        duration: 1.5,
+        ease: "elastic.out(1, 0.5)"
+      });
+
+      // Se achou todas as letras
+      if (lettersFound === eeLetters.length) {
+        setTimeout(() => {
+          gsap.to(eeLetters, {
+            y: "-2vh",
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            stagger: 0.1,
+            ease: "sine.inOut"
+          });
+          
+          // Efeito de celebração no fundo
+          gsap.to('.ee-container', {
+             background: "radial-gradient(circle, rgba(127,0,178,0.15) 0%, transparent 60%)",
+             duration: 2
+          });
+        }, 1000);
       }
     });
   });

@@ -658,6 +658,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -10vh; /* Sobe a frase para o topo da árvore */
   gap: clamp(14px, 3vw, 30px);
   flex-wrap: wrap;
   perspective: 800px;
@@ -667,6 +668,8 @@ body{
   gap: clamp(2px, 0.5vw, 8px);
 }
 .ee-letter {
+  pointer-events: auto; /* Permite que as letras sejam clicadas */
+  cursor: pointer;
   display: inline-block;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-style: italic;
@@ -677,4 +680,5 @@ body{
   will-change: transform, opacity, color;
   opacity: 0; 
 }
-#tree { cursor: pointer; } /* Hint for Easter Egg */
+
+
