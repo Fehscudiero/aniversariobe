@@ -932,6 +932,7 @@ if (isRecord){
   };
 }
 
+
 /* ============================================================
    CORNER LOVE HACKER EFFECT
    ============================================================ */
@@ -940,7 +941,7 @@ if (cornerLoveEl) {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
   let hackerInterval = null;
 
-  cornerLoveEl.addEventListener("mouseover", () => {
+  function runHackerEffect() {
     let iteration = 0;
     const targetText = cornerLoveEl.getAttribute("data-value") || "Feito com muito amor por Scudiero";
     clearInterval(hackerInterval);
@@ -957,7 +958,13 @@ if (cornerLoveEl) {
       if(iteration >= targetText.length){
         clearInterval(hackerInterval);
       }
-      iteration += 1 / 2;
+      iteration += 1 / 3; // um pouco mais devagar para dar tempo de ver o efeito no inicio
     }, 30);
-  });
+  }
+
+  // Executa assim que a página carregar
+  setTimeout(runHackerEffect, 400);
+
+  // E também quando passa o mouse
+  cornerLoveEl.addEventListener("mouseover", runHackerEffect);
 }
