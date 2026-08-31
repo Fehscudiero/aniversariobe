@@ -54,7 +54,7 @@ body{
   font-family:"Cormorant Garamond", Georgia, serif;
   font-style:italic;
   font-weight:700;
-  font-size:clamp(12px, 2.6vw, 17px);
+  font-size:clamp(10px, 2vw, 14px);
   letter-spacing:.04em;
   color:#000000;
   padding:8px 16px;
@@ -62,13 +62,11 @@ body{
   transform-origin:right top;
   animation:dropInLove 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  text-shadow: 0 0 8px rgba(127, 0, 178, 0.8), 0 0 12px rgba(127, 0, 178, 0.6);
 }
 
 .cornerLove:hover {
   transform: translateY(-2px) scale(1.02);
   color: #000000;
-  text-shadow: 0 0 10px rgba(127, 0, 178, 0.9), 0 0 20px #7f00b2;
 }
 
 @keyframes dropInLove {

@@ -944,7 +944,7 @@ if (cornerLoveEl) {
 
   function runHackerEffect() {
     let iteration = 0;
-    const targetText = cornerLoveEl.getAttribute("data-value") || "Feito com muito amor por Scudiero";
+    const targetText = cornerLoveEl.getAttribute("data-value") || "Direitos autorais do meu coração: todos reservados a você. — Scudiero";
     clearInterval(hackerInterval);
 
     hackerInterval = setInterval(() => {
@@ -955,13 +955,13 @@ if (cornerLoveEl) {
         }
         if(targetText[index] === " ") return " ";
         return letters[Math.floor(Math.random() * letters.length)];
-      }).join("") + " 💜";
+      }).join("");
 
       if(iteration >= targetText.length / 2){
         clearInterval(hackerInterval);
       }
-      iteration += 1 / 3; // Velocidade do efeito
-    }, 30);
+      iteration += 1.5; // Velocidade do efeito (MUITO mais rápido)
+    }, 20);
   }
 
   // Executa assim que a página carregar
