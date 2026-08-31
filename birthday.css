@@ -658,7 +658,8 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -10vh; /* Sobe a frase para o topo da árvore */
+  margin-top: -12vh; /* Sobe a frase */
+  margin-left: 12vw; /* Desloca mais para a direita */
   gap: clamp(14px, 3vw, 30px);
   flex-wrap: wrap;
   perspective: 800px;
@@ -674,9 +675,9 @@ body{
   font-family: "Cormorant Garamond", Georgia, serif;
   font-style: italic;
   font-weight: 700;
-  font-size: clamp(40px, 10vw, 80px);
+  font-size: clamp(50px, 12vw, 100px); /* Fonte maior */
   color: #ffffff;
-  text-shadow: 0 0 10px #e5b3ff, 0 0 30px #7f00b2, 0 0 60px #7f00b2;
+  text-shadow: 0 0 10px #ffffff, 0 0 30px #e5b3ff, 0 0 60px #7f00b2;
   will-change: transform, opacity, color;
   opacity: 0; 
 }

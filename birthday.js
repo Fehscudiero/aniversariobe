@@ -984,18 +984,18 @@ if (eeLetters.length) {
     const rx = gsap.utils.random(-35, 35); // vw (mais espalhado)
     const ry = gsap.utils.random(-15, 35); // vh (distribuído pela árvore)
     const rz = gsap.utils.random(-120, 120);
-    const scale = gsap.utils.random(0.18, 0.25);
+    const scale = gsap.utils.random(0.35, 0.45);
     
-    // Estado inicial: pedacinho disfarçado
+    // Estado inicial: pedacinho disfarçado, mas mais visível
     gsap.set(letter, { 
       x: rx + "vw", 
       y: ry + "vh", 
       rotationZ: rz,
       rotationY: gsap.utils.random(-180, 180),
       scale: scale, 
-      opacity: 0.85,
-      color: "#7f00b2",
-      textShadow: "0 0 5px rgba(127,0,178,0.6)"
+      opacity: 0.95,
+      color: "#fbeaff", /* Um roxo bem clarinho quase rosa pra dar destaque sutil */
+      textShadow: "0 0 10px rgba(255,255,255,0.7)"
     });
     
     // Flutuação independente
@@ -1025,7 +1025,7 @@ if (eeLetters.length) {
         scale: 1,
         opacity: 1,
         color: "#ffffff",
-        textShadow: "0 0 15px #e5b3ff, 0 0 30px #7f00b2, 0 0 60px #7f00b2",
+        textShadow: "0 0 10px #ffffff, 0 0 20px #e5b3ff, 0 0 40px #7f00b2, 0 0 80px #7f00b2",
         duration: 1.5,
         ease: "elastic.out(1, 0.5)"
       });
