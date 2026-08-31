@@ -933,8 +933,9 @@ if (isRecord){
 }
 
 
+
 /* ============================================================
-   CORNER LOVE HACKER EFFECT
+   CORNER LOVE HACKER EFFECT (BORDAS PRO MEIO)
    ============================================================ */
 const cornerLoveEl = document.getElementById('cornerLove');
 if (cornerLoveEl) {
@@ -948,17 +949,18 @@ if (cornerLoveEl) {
 
     hackerInterval = setInterval(() => {
       cornerLoveEl.innerText = targetText.split("").map((letter, index) => {
-        if(index < iteration) {
+        // Resolve a letra se estiver nas pontas (esquerda ou direita) da iteração atual
+        if(index < iteration || index >= targetText.length - iteration) {
           return targetText[index];
         }
         if(targetText[index] === " ") return " ";
         return letters[Math.floor(Math.random() * letters.length)];
       }).join("") + " 💛";
 
-      if(iteration >= targetText.length){
+      if(iteration >= targetText.length / 2){
         clearInterval(hackerInterval);
       }
-      iteration += 1 / 3; // um pouco mais devagar para dar tempo de ver o efeito no inicio
+      iteration += 1 / 3; // Velocidade do efeito
     }, 30);
   }
 
