@@ -54,19 +54,53 @@ body{
   font-family:"Cormorant Garamond", Georgia, serif;
   font-style:italic;
   font-weight:700;
-  font-size:clamp(14px, 3.4vw, 20px);
+  font-size:clamp(12px, 2.6vw, 17px);
   letter-spacing:.04em;
-  color:#000000;                      /* estritamente preto */
-  padding:6px 14px;
+  color:#000000;
+  padding:8px 16px;
   border-radius:999px;
-  background:rgba(255, 255, 255, 0.72);
-  border:1px solid rgba(0, 0, 0, 0.12);
-  box-shadow:0 4px 18px rgba(0, 0, 0, 0.1);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  pointer-events:none;
-  user-select:none;
-  text-shadow:0 1px 2px rgba(255, 255, 255, 0.95);
+  background:rgba(255, 255, 255, 0.45);
+  border:1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 4px 18px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  backdrop-filter:blur(12px); 
+  -webkit-backdrop-filter:blur(12px);
+  overflow:hidden;
+  cursor:default;
+  transform-origin:right top;
+  animation:dropInLove 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cornerLove::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerLove 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.cornerLove:hover {
+  background:rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px) scale(1.02);
+}
+
+@keyframes dropInLove {
+  0% { opacity: 0; transform: translateY(-20px) scale(0.95); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes shimmerLove {
+  0%, 15% { left: -150%; opacity: 0; }
+  25% { opacity: 1; }
+  45%, 100% { left: 200%; opacity: 0; }
 }
 
 .sr-only{
