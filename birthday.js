@@ -102,8 +102,8 @@ const BLOSSOM = [
   { c0: '#ffe1ec', c1: '#ff80aa' },
   { c0: '#ffd0e0', c1: '#f4577f' },
   { c0: '#ffc4d2', c1: '#e23b67' },
-  { c0: '#ffd9c4', c1: '#ff8a5b' },
-  { c0: '#ffeec2', c1: '#f6b13e' },
+  { c0: '#e5b3ff', c1: '#7f00b2' },
+  { c0: '#d98cff', c1: '#7f00b2' },
   { c0: '#ffd2e6', c1: '#e84d9a' },
 ];
 

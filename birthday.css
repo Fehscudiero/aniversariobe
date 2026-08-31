@@ -15,10 +15,10 @@
   --paper-2:  #f2c9b8;
 
   /* --- rose flood (Acts 2–3) --- */
-  --rose-deep: #a80f43;
-  --rose:      #d4235c;
-  --rose-lift: #ff5f86;
-  --wine:      #6e0a31;
+  --rose-deep: #59007c;
+  --rose:      #7f00b2;
+  --rose-lift: #b240e6;
+  --wine:      #33004a;
 
   /* --- accents / ink escurecidos para máxima legibilidade --- */
   --gold-1:    #ffcf6a;
@@ -248,7 +248,7 @@ body{
   pointer-events:none;
   overflow:hidden;
   background:
-    radial-gradient(120% 100% at 50% 8%, #d5265f 0%, var(--rose) 42%, var(--rose-deep) 78%, var(--wine) 100%);
+    radial-gradient(120% 100% at 50% 8%, #9319c5 0%, var(--rose) 42%, var(--rose-deep) 78%, var(--wine) 100%);
   color:#fff;
 }
 .blob{
@@ -258,11 +258,11 @@ body{
   will-change:transform, opacity;
 }
 .blob--1{ width:58vmax; height:58vmax; left:-18vmax; top:-16vmax;
-  background:radial-gradient(circle, rgba(255,130,160,.9), transparent 62%); }
+  background:radial-gradient(circle, rgba(190,100,245,.9), transparent 62%); }
 .blob--2{ width:46vmax; height:46vmax; right:-14vmax; top:22vmax;
-  background:radial-gradient(circle, rgba(255,90,120,.75), transparent 64%); }
+  background:radial-gradient(circle, rgba(160,60,220,.75), transparent 64%); }
 .blob--3{ width:52vmax; height:52vmax; left:24vmax; bottom:-22vmax;
-  background:radial-gradient(circle, rgba(180,20,70,.8), transparent 66%); }
+  background:radial-gradient(circle, rgba(100,10,150,.8), transparent 66%); }
 
 /* faint grid — a hair of parallax gives the flood depth, not flatness */
 .fgrid{
