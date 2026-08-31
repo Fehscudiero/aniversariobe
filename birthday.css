@@ -658,28 +658,35 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -12vh; /* Sobe a frase */
-  margin-left: 12vw; /* Desloca mais para a direita */
-  gap: clamp(14px, 3vw, 30px);
+  margin-top: -12vh;
+  margin-left: 12vw;
+  gap: clamp(16px, 4vw, 36px);
   flex-wrap: wrap;
   perspective: 800px;
 }
 .ee-word {
   display: flex;
-  gap: clamp(2px, 0.5vw, 8px);
+  gap: clamp(4px, 1vw, 12px);
 }
 .ee-letter {
-  pointer-events: auto; /* Permite que as letras sejam clicadas */
+  pointer-events: auto;
   cursor: pointer;
   display: inline-block;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
   font-style: italic;
-  font-weight: 700;
-  font-size: clamp(50px, 12vw, 100px); /* Fonte maior */
+  font-weight: 900;
+  font-size: clamp(70px, 16vw, 140px); /* Fonte gigante e épica */
   color: #ffffff;
   text-shadow: 0 0 10px #ffffff, 0 0 30px #e5b3ff, 0 0 60px #7f00b2;
-  will-change: transform, opacity, color;
-  opacity: 0; 
+  will-change: transform, opacity, color, filter;
+  opacity: 0;
+  transition: filter 0.3s;
+}
+
+/* Efeito de hover intuitivo: se passar o mouse antes de achar, ela brilha e cresce */
+.ee-letter[data-found="false"]:hover {
+  filter: drop-shadow(0 0 15px #fff) brightness(1.5);
+  z-index: 100;
 }
 
 

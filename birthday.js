@@ -972,6 +972,7 @@ if (cornerLoveEl) {
 }
 
 
+
 /* ============================================================
    EASTER EGG (EU TE AMO) ANIMATION - BUSCA LETRA POR LETRA
    ============================================================ */
@@ -981,28 +982,31 @@ let lettersFound = 0;
 if (eeLetters.length) {
   eeLetters.forEach(letter => {
     // Espalha pela tela (dentro da área da copa da árvore)
-    const rx = gsap.utils.random(-35, 35); // vw (mais espalhado)
-    const ry = gsap.utils.random(-15, 35); // vh (distribuído pela árvore)
-    const rz = gsap.utils.random(-120, 120);
-    const scale = gsap.utils.random(0.35, 0.45);
+    const rx = gsap.utils.random(-35, 35); // vw
+    const ry = gsap.utils.random(-15, 35); // vh
+    const rz = gsap.utils.random(-45, 45); // Menos rotação para ser mais legível
+    const scale = gsap.utils.random(0.5, 0.7); // Tamanho bem maior para achar mais fácil
     
-    // Estado inicial: pedacinho disfarçado, mas mais visível
+    letter.dataset.found = "false";
+    
+    // Estado inicial: visível e chamativo
     gsap.set(letter, { 
       x: rx + "vw", 
       y: ry + "vh", 
       rotationZ: rz,
-      rotationY: gsap.utils.random(-180, 180),
+      rotationY: gsap.utils.random(-30, 30),
       scale: scale, 
-      opacity: 0.95,
-      color: "#fbeaff", /* Um roxo bem clarinho quase rosa pra dar destaque sutil */
-      textShadow: "0 0 10px rgba(255,255,255,0.7)"
+      opacity: 1, // Visibilidade total
+      color: "#ffffff", // Branco para saltar aos olhos
+      textShadow: "0 0 15px rgba(255,255,255,0.9), 0 0 30px #e5b3ff"
     });
     
-    // Flutuação independente
+    // Flutuação "Respirando" chamando atenção
     const floatAnim = gsap.to(letter, {
-      y: (ry - 2) + "vh",
-      rotationZ: rz + gsap.utils.random(-20, 20),
-      duration: gsap.utils.random(3, 5),
+      y: (ry - 3) + "vh",
+      scale: scale + 0.15,
+      textShadow: "0 0 25px rgba(255,255,255,1), 0 0 50px #ffb3ff",
+      duration: gsap.utils.random(1.5, 2.5), // Mais dinâmico
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
@@ -1030,24 +1034,41 @@ if (eeLetters.length) {
         ease: "elastic.out(1, 0.5)"
       });
 
-      // Se achou todas as letras
+      // Se achou todas as letras (ANIMAÇÃO ÉPICA DE CONCLUSÃO)
       if (lettersFound === eeLetters.length) {
-        setTimeout(() => {
-          gsap.to(eeLetters, {
-            y: "-2vh",
-            duration: 2.5,
-            repeat: -1,
-            yoyo: true,
-            stagger: 0.1,
-            ease: "sine.inOut"
-          });
-          
-          // Efeito de celebração no fundo
-          gsap.to('.ee-container', {
-             background: "radial-gradient(circle, rgba(127,0,178,0.15) 0%, transparent 60%)",
-             duration: 2
-          });
-        }, 1000);
+        // Flash inicial de celebração
+        gsap.to('.ee-container', {
+          background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(127,0,178,0.4) 40%, transparent 80%)",
+          duration: 0.5,
+          yoyo: true,
+          repeat: 1
+        });
+        
+        // Efeito foda nas letras
+        const tl = gsap.timeline({ delay: 1 });
+        tl.to(eeLetters, {
+          scale: 1.3,
+          color: "#ffffff",
+          textShadow: "0 0 20px #fff, 0 0 40px #ffccff, 0 0 80px #e5b3ff",
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(2)"
+        })
+        .to(eeLetters, {
+          scale: 1,
+          color: "#fff0f5",
+          textShadow: "0 0 15px #fff, 0 0 25px #ff66cc, 0 0 50px #7f00b2",
+          duration: 0.8,
+          ease: "power2.out"
+        }, "+=0.2")
+        .to(eeLetters, {
+          y: "-3vh",
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          stagger: 0.15,
+          ease: "sine.inOut"
+        }, "-=0.5");
       }
     });
   });
